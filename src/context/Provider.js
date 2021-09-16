@@ -37,9 +37,18 @@ class Provider extends React.Component {
 
   render() {
     const contextValue = {
-
+      ...this.state,
+      moveCar: this.moveCar,
+      changeSignal: this.changeSignal,
     }
-    return (null)
+
+    const { children } = this.props;
+
+    return (
+      <carContext.Provider value={ contextValue }>
+        { children }
+      </carContext.Provider>
+    )
   }
 }
 
