@@ -18,7 +18,7 @@ class Provider extends React.Component {
   moveCar = (car, side) =>  {
     this.setState({
       ...this.state,
-      cars[car]:side,
+      [car]:side,
     })
   }
 
