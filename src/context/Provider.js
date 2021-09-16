@@ -1,6 +1,6 @@
 // O Provider é um componente de classe
 import React from "react";
-import carContext from "."; //Para usar a chave Provider dentro do render
+import carContext from "./index"; //Para usar a chave Provider dentro do render
 
 
 class Provider extends React.Component {
@@ -36,10 +36,11 @@ class Provider extends React.Component {
   }
 
   render() {
+    const { state, moveCar, changeSignal } = this;
     const contextValue = {
-      ...this.state,
-      moveCar: this.moveCar,
-      changeSignal: this.changeSignal,
+      ...state,
+      moveCar,
+      changeSignal,
     }
 
     const { children } = this.props;

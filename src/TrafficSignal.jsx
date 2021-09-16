@@ -1,9 +1,10 @@
 // src/TrafficSignal.jsx
 
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { changeSignal } from './redux/actionCreators';
+// import PropTypes from 'prop-types';
+// import { connect } from 'react-redux';
+// import { changeSignal } from './redux/actionCreators';
+import carContext from './context';
 import redSignal from './images/redSignal.jpeg';
 import yellowSignal from './images/yellowSignal.jpeg';
 import greenSignal from './images/greenSignal.jpeg';
@@ -15,9 +16,15 @@ const renderSignal = (signalColor) => {
   return null;
 };
 
-const TrafficSignal = ({ signalColor, changeSignal }) => {
-  return (
-    <div>
+class TrafficSignal extends React.Component {
+  // constructor(props) {
+  //   super(props);
+  // }
+  render() {
+    const { color } = this.context.signal;
+    const { changeSignal } = this.context;
+    return (
+      <div>
       <div className="button-container">
         <button onClick={() => changeSignal('red')} type="button">
           Red
@@ -29,20 +36,25 @@ const TrafficSignal = ({ signalColor, changeSignal }) => {
           Green
         </button>
       </div>
-      <img className="signal" src={renderSignal(signalColor)} alt="" />
+      <img className="signal" src={renderSignal(color)} alt="" />
     </div>
   );
+}
 };
 
-const mapStateToProps = (state) => ({
-  signalColor: state.trafficReducer.signal.color
-});
+// const mapStateToProps = (state) => ({
+//   signalColor: state.trafficReducer.signal.color
+// });
 
-const mapDispatchToProps = { changeSignal };
+// const mapDispatchToProps = { changeSignal };
 
-TrafficSignal.propTypes = {
-  changeSignal: PropTypes.func.isRequired,
-  signalColor: PropTypes.string.isRequired,
-};
+// TrafficSignal.propTypes = {
+//   changeSignal: PropTypes.func.isRequired,
+//   signalColor: PropTypes.string.isRequired,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TrafficSignal);
+// export default connect(mapStateToProps, mapDispatchToProps)(TrafficSignal);
+
+TrafficSignal.contextType = carContext;
+
+export default TrafficSignal;
