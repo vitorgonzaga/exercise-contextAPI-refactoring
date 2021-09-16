@@ -1,5 +1,6 @@
 // O Provider é um componente de classe
 import React from "react";
+import carContext from ".";
 
 
 class Provider extends React.Component {
@@ -15,10 +16,22 @@ class Provider extends React.Component {
     }
   }
 
+
   moveCar = (car, side) =>  {
     this.setState({
-      ...this.state,
-      [car]:side,
+      cars : {
+        ...this.state.cars,
+        [car]:side,
+      }
+    })
+  }
+
+  changeSignal = (strSignal) => {
+    this.setState({
+      signal: {
+        ...this.setState.signal,
+        color: strSignal,
+      }
     })
   }
 
